@@ -1,4 +1,4 @@
-package com.antonbondoc.model;
+package com.antonbondoc.weather.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

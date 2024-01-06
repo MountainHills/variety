@@ -1,8 +1,8 @@
-package com.antonbondoc.service;
+package com.antonbondoc.weather.service;
 
-import com.antonbondoc.config.ObjectMapperConfig;
-import com.antonbondoc.config.WeatherApiConfig;
-import com.antonbondoc.model.CurrentWeatherVO;
+import com.antonbondoc.weather.config.ObjectMapperConfig;
+import com.antonbondoc.weather.config.WeatherApiConfig;
+import com.antonbondoc.weather.model.CurrentWeatherVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,7 +17,6 @@ import org.apache.hc.core5.net.URIBuilder;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
 public class WeatherServiceDefault implements WeatherService {
@@ -27,7 +26,7 @@ public class WeatherServiceDefault implements WeatherService {
     @Override
     public CurrentWeatherVO getCurrentWeather() {
         log.info("Getting current weather");
-        AtomicReference<CurrentWeatherVO> currentWeatherVO = new AtomicReference<>();
+        CurrentWeatherVO currentWeatherVO = null;
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             String url = "https://api.openweathermap.org/data/2.5/weather";
@@ -41,17 +40,14 @@ public class WeatherServiceDefault implements WeatherService {
             HttpGet httpGet = new HttpGet(uri);
 
             log.info("Calling [GET] {}", url);
-            httpClient.execute(httpGet, response -> {
+            currentWeatherVO = httpClient.execute(httpGet, response -> {
                 HttpEntity httpEntity = response.getEntity();
-                String responseBody = EntityUtils.toString(httpEntity);
 
+                String responseBody = EntityUtils.toString(httpEntity);
                 log.info("The response body is: {}", responseBody);
 
-                // Maps the response body to CurrentWeatherVO
-                currentWeatherVO.set(objectMapper.readValue(responseBody, CurrentWeatherVO.class));
-
                 EntityUtils.consume(httpEntity);    // Closes the entity
-                return null;
+                return objectMapper.readValue(responseBody, CurrentWeatherVO.class);
             });
 
         } catch (JsonMappingException e) {
@@ -64,6 +60,6 @@ public class WeatherServiceDefault implements WeatherService {
             throw new RuntimeException("CRITICAL: Fail to call API");
         }
 
-        return currentWeatherVO.get();
+        return currentWeatherVO;
     }
 }

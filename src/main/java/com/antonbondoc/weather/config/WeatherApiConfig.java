@@ -1,4 +1,4 @@
-package com.antonbondoc.config;
+package com.antonbondoc.weather.config;
 
 import java.util.Locale;
 

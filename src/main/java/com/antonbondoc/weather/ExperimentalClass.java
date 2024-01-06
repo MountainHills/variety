@@ -1,8 +1,8 @@
-package com.antonbondoc;
+package com.antonbondoc.weather;
 
-import com.antonbondoc.model.CurrentWeatherVO;
-import com.antonbondoc.service.WeatherService;
-import com.antonbondoc.service.WeatherServiceDefault;
+import com.antonbondoc.weather.model.CurrentWeatherVO;
+import com.antonbondoc.weather.service.WeatherService;
+import com.antonbondoc.weather.service.WeatherServiceDefault;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
