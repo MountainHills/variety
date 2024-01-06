@@ -1,7 +1,7 @@
 package com.antonbondoc;
 
 
-import com.antonbondoc.weather.menu.VarietyMainMenu;
+import com.antonbondoc.menu.VarietyMainMenu;
 
 public class VarietyApplication {
     public static void main(String[] args) {

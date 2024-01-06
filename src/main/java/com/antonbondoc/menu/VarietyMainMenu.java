@@ -1,4 +1,4 @@
-package com.antonbondoc.weather.menu;
+package com.antonbondoc.menu;
 
 public class VarietyMainMenu {
     public VarietyMainMenu() {
