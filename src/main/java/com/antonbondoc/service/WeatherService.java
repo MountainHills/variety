@@ -1,5 +1,7 @@
 package com.antonbondoc.service;
 
-public class WeatherService {
+import com.antonbondoc.model.CurrentWeatherVO;
 
+public interface WeatherService {
+    CurrentWeatherVO getCurrentWeather();
 }
