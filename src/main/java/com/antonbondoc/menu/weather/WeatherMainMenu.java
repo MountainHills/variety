@@ -1,5 +1,8 @@
 package com.antonbondoc.menu.weather;
 
+import com.antonbondoc.weather.model.CurrentWeatherVO;
+import com.antonbondoc.weather.model.MainWeatherInfoVO;
+import com.antonbondoc.weather.model.WeatherVO;
 import com.antonbondoc.weather.service.WeatherService;
 import com.antonbondoc.weather.service.WeatherServiceDefault;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +48,26 @@ public class WeatherMainMenu {
 
     private void displayCurrentWeather() {
         System.out.println("== Current Weather Information ==");
-        System.out.println(weatherService.getCurrentWeather());
+        final CurrentWeatherVO currentWeatherVO = weatherService.getCurrentWeather();
+
+        if (currentWeatherVO == null) {
+            System.out.println("Didn't get current weather information.");
+            return;
+        }
+
+        final WeatherVO weather = currentWeatherVO.getWeather().get(0);
+        System.out.println("! General Weather Forecast !");
+        System.out.print("Status: " + weather.getMain());
+        System.out.print("Description: " + weather.getDescription());
+
+        final MainWeatherInfoVO main = currentWeatherVO.getMain();
+        System.out.println("! More Information !");
+        System.out.print("Description: " + main.getTemp());
+        System.out.print("Feels like: " + main.getFeelsLike());
+        System.out.print("T: " + main.getTempMin());
+        System.out.print("Description: " + main.getTempMax());
+        System.out.print("Feels like: " + main.getPressure());
+        System.out.print("Feels like: " + main.getHumidity());
     }
 
 }
