@@ -13,14 +13,15 @@ public class VarietyMainMenu {
     }
 
     private void openAppSelection() {
-        Scanner scan = new Scanner(System.in);
 
         while (true) {
+            Scanner scan = new Scanner(System.in);
             displayAvailableApps();
 
             String choice = scan.next().toUpperCase();
             switch (choice) {
                 case "A":
+                    scan.close();
                     new WeatherApplication();
                     break;
                 case "Q":
