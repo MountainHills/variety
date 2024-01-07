@@ -1,8 +1,16 @@
 package com.antonbondoc.menu.weather;
 
+import com.antonbondoc.weather.service.WeatherService;
+import com.antonbondoc.weather.service.WeatherServiceDefault;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Scanner;
 
+@Slf4j
 public class WeatherMainMenu {
+
+    private final static WeatherService weatherService = new WeatherServiceDefault();
+
     public WeatherMainMenu() {
         System.out.println("======= Welcome to Weather Application =======");
         System.out.println("Note: This app uses Apache HttpClient, Jackson, and OpenWeather API.");
@@ -33,10 +41,6 @@ public class WeatherMainMenu {
         scan.close();
     }
 
-    private void displayCurrentWeather() {
-
-    }
-
     private void displayAvailableApps() {
         System.out.println("=== Available Information ===");
         System.out.println("[A] Current Weather");
@@ -44,4 +48,10 @@ public class WeatherMainMenu {
         System.out.println("[Q] Back to Main Menu");
         System.out.print("==! Choose an option: ");
     }
+
+    private void displayCurrentWeather() {
+        System.out.println("== Current Weather Information ==");
+        System.out.println(weatherService.getCurrentWeather());
+    }
+
 }

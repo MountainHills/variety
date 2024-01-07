@@ -28,6 +28,7 @@ public class VarietyMainMenu {
                     System.out.println("Thank you for using Variety Application");
                     System.exit(0);
                 default:
+                    scan.close();
                     System.out.println("Invalid option, please try again!");
             }
         }
