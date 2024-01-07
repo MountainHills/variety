@@ -11,21 +11,17 @@ public class WeatherMainMenu {
 
     private final static WeatherService weatherService = new WeatherServiceDefault();
 
-    public WeatherMainMenu() {
+    public WeatherMainMenu(Scanner scanner) {
         System.out.println("======= Welcome to Weather Application =======");
         System.out.println("Note: This app uses Apache HttpClient, Jackson, and OpenWeather API.");
-        openAppSelection();
+        openAppSelection(scanner);
     }
 
-    private void openAppSelection() {
-        Scanner scan = new Scanner(System.in);
-
+    private void openAppSelection(Scanner scanner) {
         main:
         while (true) {
-
             displayAvailableApps();
-
-            String choice = scan.next().toUpperCase();
+            String choice = scanner.next();
             switch (choice) {
                 case "A":
                     displayCurrentWeather();
@@ -37,8 +33,6 @@ public class WeatherMainMenu {
                     System.out.println("Invalid option, please try again!");
             }
         }
-
-        scan.close();
     }
 
     private void displayAvailableApps() {

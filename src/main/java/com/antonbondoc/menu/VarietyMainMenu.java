@@ -13,25 +13,26 @@ public class VarietyMainMenu {
     }
 
     private void openAppSelection() {
+        Scanner scanner = new Scanner(System.in);
 
+        main:
         while (true) {
-            Scanner scan = new Scanner(System.in);
             displayAvailableApps();
-
-            String choice = scan.next().toUpperCase();
+            String choice = scanner.next().toUpperCase();
             switch (choice) {
                 case "A":
-                    scan.close();
-                    new WeatherApplication();
+                    new WeatherApplication(scanner);
                     break;
                 case "Q":
                     System.out.println("Thank you for using Variety Application");
-                    System.exit(0);
+                    break main;
                 default:
-                    scan.close();
+                    scanner.close();
                     System.out.println("Invalid option, please try again!");
             }
         }
+
+        scanner.close();
     }
 
     private void displayAvailableApps() {
