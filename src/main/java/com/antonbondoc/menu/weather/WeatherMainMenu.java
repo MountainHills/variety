@@ -56,18 +56,18 @@ public class WeatherMainMenu {
         }
 
         final WeatherVO weather = currentWeatherVO.getWeather().get(0);
-        System.out.println("! General Weather Forecast !");
-        System.out.print("Status: " + weather.getMain());
-        System.out.print("Description: " + weather.getDescription());
+        System.out.println("#== General Weather Forecast ==");
+        System.out.println("Status: " + weather.getMain());
+        System.out.println("Description: " + weather.getDescription());
 
         final MainWeatherInfoVO main = currentWeatherVO.getMain();
-        System.out.println("! More Information !");
-        System.out.print("Description: " + main.getTemp());
-        System.out.print("Feels like: " + main.getFeelsLike());
-        System.out.print("T: " + main.getTempMin());
-        System.out.print("Description: " + main.getTempMax());
-        System.out.print("Feels like: " + main.getPressure());
-        System.out.print("Feels like: " + main.getHumidity());
+        System.out.println("#== More Information ==");
+        System.out.println("Description: " + main.getTemp());
+        System.out.println("Feels like: " + main.getFeelsLike());
+        System.out.println("Minimum Temperature: " + main.getTempMin());
+        System.out.println("Max Temperature: " + main.getTempMax());
+        System.out.println("Atmospheric Pressure: " + main.getPressure());
+        System.out.println("Humidity: " + main.getHumidity());
     }
 
 }
